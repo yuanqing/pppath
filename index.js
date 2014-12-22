@@ -1,7 +1,11 @@
 'use strict';
 
-var consecutiveSlash = /\/+/g;
+var consecutiveSlash = /(:)?\/+/g;
 var endsWithExtension = /[^\/]*\.[^\/]+$/g;
+
+var fn = function(match, c) {
+  return c ? '://' : '/';
+};
 
 var pppath = function(parts, filename) {
   if (typeof parts === 'string') {
@@ -10,7 +14,7 @@ var pppath = function(parts, filename) {
   if (filename && !endsWithExtension.test(parts[parts.length-1])) {
     parts.push(filename);
   }
-  return parts.join('/').replace(consecutiveSlash, '/');
+  return parts.join('/').replace(consecutiveSlash, fn);
 };
 
 module.exports = exports = pppath;

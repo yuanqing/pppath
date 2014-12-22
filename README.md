@@ -6,19 +6,20 @@
 
 ```js
 // without `filename`
-pppath(['foo/', '/bar']);    //=> 'foo/bar'
-pppath(['foo/', '/bar/']);   //=> 'foo/bar/'
-pppath(['foo/', '/bar.js']); //=> 'foo/bar.js'
+pppath(['/foo/', '/bar']);            //=> '/foo/bar'
+pppath(['http://', '/foo/', '/bar']); //=> 'http://foo/bar'
 
 // with `filename`
-var filename = 'index.html';
-pppath(['foo/', '/bar'], filename);    //=> 'foo/bar/index.html'
-pppath(['foo/', '/bar/'], filename);   //=> 'foo/bar/index.html'
-pppath(['foo/', '/bar.js'], filename); //=> 'foo/bar.js'
+pppath(['/foo/', '/bar'], 'index.html');               //=> 'foo/bar/index.html'
+pppath(['/foo/', '/bar/'], 'index.html');              //=> 'foo/bar/index.html'
+pppath(['/foo/', '/bar.js'], 'index.html');            //=> 'foo/bar.js'
+pppath(['http://', '/foo/', '/bar'], 'index.html');    //=> 'http://foo/bar/index.html'
+pppath(['http://', '/foo/', '/bar/'], 'index.html');   //=> 'http://foo/bar/index.html'
+pppath(['http://', '/foo/', '/bar.js'], 'index.html'); //=> 'http://foo/bar.js'
 ```
 
-1. Consecutive `/` will be replaced by a single `/`.
-2. If a `filename` (the second argument) is specified, it will be appended to the path only if the path does not already end with a file extension.
+1. Consecutive `/` will be replaced by a single `/`, with the exception that the character sequence `://` will remain intact.
+2. If a `filename` (ie. the second argument) is specified, it will be appended to the path only if the path does not already end with a file extension.
 
 More usage examples are in [the tests](https://github.com/yuanqing/pppath/blob/master/test/pppath.spec.js).
 
