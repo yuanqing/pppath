@@ -10,9 +10,9 @@ pppath(['/foo/', '/bar']);            //=> '/foo/bar'
 pppath(['http://', '/foo/', '/bar']); //=> 'http://foo/bar'
 
 // with `filename`
-pppath(['/foo/', '/bar'], 'index.html');               //=> 'foo/bar/index.html'
-pppath(['/foo/', '/bar/'], 'index.html');              //=> 'foo/bar/index.html'
-pppath(['/foo/', '/bar.js'], 'index.html');            //=> 'foo/bar.js'
+pppath(['/foo/', '/bar'], 'index.html');               //=> '/foo/bar/index.html'
+pppath(['/foo/', '/bar/'], 'index.html');              //=> '/foo/bar/index.html'
+pppath(['/foo/', '/bar.js'], 'index.html');            //=> '/foo/bar.js'
 pppath(['http://', '/foo/', '/bar'], 'index.html');    //=> 'http://foo/bar/index.html'
 pppath(['http://', '/foo/', '/bar/'], 'index.html');   //=> 'http://foo/bar/index.html'
 pppath(['http://', '/foo/', '/bar.js'], 'index.html'); //=> 'http://foo/bar.js'
