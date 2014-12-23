@@ -11,7 +11,7 @@ var pppath = function(parts, filename) {
   if (typeof parts === 'string') {
     parts = [parts];
   }
-  if (filename && !endsWithExtension.test(parts[parts.length-1])) {
+  if (filename && parts[parts.length-1].search(endsWithExtension) === -1) {
     parts.push(filename);
   }
   return parts.join('/').replace(consecutiveSlash, fn);
