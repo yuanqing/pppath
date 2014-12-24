@@ -14,7 +14,7 @@ var pppath = function(parts, filename) {
   if (filename && parts[parts.length-1].search(endsWithExtension) === -1) {
     parts.push(filename);
   }
-  return parts.join('/').replace(consecutiveSlash, fn);
+  return parts.filter(Boolean).join('/').replace(consecutiveSlash, fn);
 };
 
 module.exports = exports = pppath;

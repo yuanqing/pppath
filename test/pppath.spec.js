@@ -21,7 +21,7 @@ describe('pppath(parts [, filename])', function() {
 
   it('with `filename`', function() {
     var filename = 'index.html';
-    expect(pppath('', filename)).toBe('/index.html');
+    expect(pppath('', filename)).toBe('index.html');
     expect(pppath('/', filename)).toBe('/index.html');
     expect(pppath('/foo//bar', filename)).toBe('/foo/bar/index.html');
     expect(pppath('/foo//bar/', filename)).toBe('/foo/bar/index.html');
