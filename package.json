@@ -1,6 +1,6 @@
 {
   "name": "pppath",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Join strings to form a valid file path.",
   "author": "Lim Yuan Qing",
   "license": "MIT",
