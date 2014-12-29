@@ -1,8 +1,12 @@
 # pppath.js [![npm Version](http://img.shields.io/npm/v/pppath.svg?style=flat)](https://www.npmjs.org/package/pppath) [![Build Status](https://img.shields.io/travis/yuanqing/pppath.svg?style=flat)](https://travis-ci.org/yuanqing/pppath) [![Coverage Status](https://img.shields.io/coveralls/yuanqing/pppath.svg?style=flat)](https://coveralls.io/r/yuanqing/pppath)
 
-> Join strings to form a valid file path.
+> Join strings to form a valid path.
 
-## Usage
+## API
+
+### pppath(parts [, filename])
+
+Returns a String, the result of joining `parts`. `filename` is appended to the returned path if the last element of `parts` does not end with a file extension.
 
 ```js
 // without `filename`
@@ -18,19 +22,17 @@ pppath(['http://', '/foo/', '/bar/'], 'index.html');   //=> 'http://foo/bar/inde
 pppath(['http://', '/foo/', '/bar.js'], 'index.html'); //=> 'http://foo/bar.js'
 ```
 
-1. Consecutive `/` will be replaced by a single `/`, with the exception that the character sequence `://` will remain intact.
-2. If a `filename` (ie. the second argument) is specified, it will be appended to the path only if the path does not already end with a file extension.
+Consecutive `/` will be replaced by a single `/`, with the exception that the character sequence `://` will remain intact. This is not the behaviour of the Node API&rsquo;s [`path.join`](http://nodejs.org/api/path.html#path_path_join_path1_path2):
+
+```js
+// :(
+path.join('http://', '/foo/', '/bar'); //=> 'http:/foo/bar'
+
+// :)
+pppath(['http://', '/foo/', '/bar']);  //=> 'http://foo/bar'
+```
 
 More usage examples are in [the tests](https://github.com/yuanqing/pppath/blob/master/test/pppath.spec.js).
-
-## API
-
-### pppath(parts [, filename])
-
-Returns a String, the result of joining `parts`. `filename` is appended to the path if the path does not end with a file extension.
-
-- `parts` &mdash; A String, or an array of Strings to be joined to form the file path.
-- `filename` &mdash; A String.
 
 ## Installation
 
